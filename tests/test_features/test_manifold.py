@@ -88,10 +88,17 @@ class TestManifold(VisualTestCase):
         """
         Should not raise a warning if n_neighbors not specified
         """
+        import warnings
+
         message = "case failed for {}".format(algorithm)
 
-        with pytest.warns(None) as record:
-            assert not record.list, message
+        with warnings.catch_warnings():
+            warnings.simplefilter("error")  # Turn warnings into errors
+            # If a warning is raised, it will cause an error and fail the test
+            try:
+                Manifold(manifold=algorithm)
+            except Warning as w:
+                pytest.fail(f"{message}: {w}")
 
     def test_bad_manifold_exception(self):
         """
@@ -191,7 +198,8 @@ class TestManifold(VisualTestCase):
     @pytest.mark.parametrize("manifolds", ["mds", "spectral", "tsne"])
     def test_manifold_assert_no_transform(self, mock_fit, manifolds):
         """
-        Assert that transform raises error when MDS, TSNE or Spectral Embedding algorithms are used.
+        Assert that transform raises error when MDS, TSNE or
+        Spectral Embedding algorithms are used.
         """
         X, _ = self.s_curves
         manifold = Manifold(manifold=manifolds, target="auto", n_neighbors=10)
@@ -340,7 +348,7 @@ class TestManifold(VisualTestCase):
             target="discrete",
             n_neighbors=5,
             random_state=37,
-            show=False
+            show=False,
         )
         assert isinstance(visualizer, Manifold)
         self.assert_images_similar(visualizer)
@@ -352,12 +360,7 @@ class TestManifold(VisualTestCase):
         X, y = self.continuous
 
         visualizer = manifold_embedding(
-            X,
-            y,
-            manifold="tsne",
-            target="continuous",
-            random_state=37,
-            show=False
+            X, y, manifold="tsne", target="continuous", random_state=37, show=False
         )
         assert isinstance(visualizer, Manifold)
 
