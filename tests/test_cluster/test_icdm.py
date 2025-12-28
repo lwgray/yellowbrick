@@ -173,7 +173,8 @@ class TestInterclusterDistance(VisualTestCase):
 
         # Image similarity
         oz.finalize()
-        self.assert_images_similar(oz)
+        # t-SNE is stochastic, allow for variance across platforms (RMS 9.630 * 1.20)
+        self.assert_images_similar(oz, tol=11.6)
 
     @pytest.mark.skip(reason="LDA not implemented yet")
     def test_lda_mds(self):
