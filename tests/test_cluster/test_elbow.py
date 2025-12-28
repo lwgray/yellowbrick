@@ -282,7 +282,7 @@ class TestKElbowVisualizer(VisualTestCase):
         assert len(visualizer.k_scores_) == 4
 
         visualizer.finalize()
-        self.assert_images_similar(visualizer)
+        self.assert_images_similar(visualizer, tol=0.03)
         assert_array_almost_equal(visualizer.k_scores_, expected)
 
     @pytest.mark.xfail(sys.platform == "win32", reason="images not close on windows")

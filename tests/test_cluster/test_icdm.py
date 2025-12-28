@@ -158,7 +158,7 @@ class TestInterclusterDistance(VisualTestCase):
         """
         model = AffinityPropagation(random_state=42)
         oz = InterclusterDistance(
-            model, random_state=763, embedding="tsne", legend=False
+            model, random_state=763, embedding="tsne", legend=False, perplexity=3
         )
 
         # Prefit assertions
