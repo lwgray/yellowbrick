@@ -31,15 +31,15 @@ from setuptools import find_packages
 
 ## Basic information
 ## Basic information
-NAME         = "yellowbrick"
-DESCRIPTION  = "A suite of visual analysis and diagnostic tools for machine learning."
-AUTHOR       = "The scikit-yb developers"
-EMAIL        = "yellowbrick@googlegroups.com"
-MAINTAINER   = "The scikit-yb developers"
-LICENSE      = "Apache 2"
-REPOSITORY   = "https://github.com/DistrictDataLabs/yellowbrick"
-PACKAGE      = "yellowbrick"
-URL          = "http://scikit-yb.org/"
+NAME = "yellowbrick"
+DESCRIPTION = "A suite of visual analysis and diagnostic tools for machine learning."
+AUTHOR = "The scikit-yb developers"
+EMAIL = "yellowbrick@googlegroups.com"
+MAINTAINER = "The scikit-yb developers"
+LICENSE = "Apache 2"
+REPOSITORY = "https://github.com/DistrictDataLabs/yellowbrick"
+PACKAGE = "yellowbrick"
+URL = "http://scikit-yb.org/"
 
 ## Define the keywords
 KEYWORDS = (
@@ -77,14 +77,19 @@ PKG_DESCRIBE = "DESCRIPTION.md"
 
 ## Directories to ignore in find_packages
 EXCLUDES = (
-    "tests", "tests.*",
+    "tests",
+    "tests.*",
     "bin",
-    "docs", "docs.*",
+    "docs",
+    "docs.*",
     "fixtures",
     "register",
-    "notebooks", "notebooks.*",
-    "examples", "examples.*",
-    "binder", "binder.*",
+    "notebooks",
+    "notebooks.*",
+    "examples",
+    "examples.*",
+    "binder",
+    "binder.*",
     "paper",
 )
 
@@ -163,7 +168,7 @@ config = {
     "zip_safe": False,
     "entry_points": {"console_scripts": []},
     "install_requires": list(get_requires()),
-    "python_requires": ">=3.10, <4"
+    "python_requires": ">=3.10, <4",
 }
 
 

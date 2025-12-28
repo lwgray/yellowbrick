@@ -33,6 +33,7 @@ from yellowbrick.exceptions import YellowbrickValueError
 ## Color Utilities
 ##########################################################################
 
+
 def get_color_cycle():
     """
     Returns the current color cycle from matplotlib.
@@ -86,28 +87,23 @@ def resolve_colors(n_colors=None, colormap=None, colors=None):
 
         if isinstance(colormap, str):
             try:
-
                 # try to get colormap from PALETTES first
                 _colormap = PALETTES.get(colormap, None)
 
                 if _colormap is None:
-
                     colormap = cm.get_cmap(colormap)
                     n_colors = n_colors or len(get_color_cycle())
                     _colors = list(map(colormap, np.linspace(0, 1, num=n_colors)))
 
                 else:
-
                     _colors = ColorPalette(_colormap).as_rgb()
                     n_colors = n_colors or len(_colors)
 
             except ValueError as e:
-
                 raise YellowbrickValueError(e)
 
         # if yellowbrick color palette is provided as colormap
         elif isinstance(colormap, ColorPalette):
-
             _colors = colormap.as_rgb()
             n_colors = n_colors or len(_colors)
 
@@ -127,7 +123,6 @@ def resolve_colors(n_colors=None, colormap=None, colors=None):
 
     # Work with the color list
     elif colors is not None:
-
         # Warn if both colormap and colors is specified.
         if colormap is not None:
             warnings.warn("both colormap and colors specified; using colors")
